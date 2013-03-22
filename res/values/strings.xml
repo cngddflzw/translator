@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Translator</string>
+    <string name="action_settings">Settings</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="title">谷歌词典</string>
+    <string name="test_text">测试文字</string>
+    <string name="query">查询</string>
+    <string name="enter">确定</string>
+    <string name="cancel">取消</string>
+    <string name="login">登录</string>
+    <string name="logout">注销</string>
+    <string name="exit">退出</string>
+    <string name="register">注册</string>
+    <string name="username">用户名</string>
+    <string name="passwd">密码</string>
+    <string name="pwdrepeat">重复密码</string>
+    <string name="title_activity_dic">DicActivity</string>
+    <string name="title_activity_history">HistoryActivity</string>
+    <string name="title_activity_new_word">NewWordActivity</string>
+    <string name="title_activity_dic_spinner">DicSpinnerActivity</string>
+    <string name="title_activity_bottom_menu">BottomMenu</string>
+    <string name="title_activity_login">LoginActivity</string>
+    <string name="title_activity_register">RegisterActivity</string>
+
+</resources>

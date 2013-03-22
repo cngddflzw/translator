@@ -1,0 +1,58 @@
+<ScrollView  xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+	
+	    <RelativeLayout
+	        android:layout_width="match_parent"
+	        android:layout_height="wrap_content" >
+	        
+	        <TextView 
+	            android:id="@+id/title"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:text="@string/title"
+	            android:textSize="50dip"
+	            android:layout_marginTop="20dip"
+	            android:gravity="center_horizontal" />
+	        
+	        <Spinner
+	            android:id="@+id/dicSpinner"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_marginTop="10dip"
+	            android:layout_marginLeft="5dip"
+	            android:layout_below="@id/title" />
+	        	
+	        <AutoCompleteTextView
+	            android:id="@+id/dicInput"
+	            android:layout_width="200dip"
+	            android:layout_height="wrap_content"
+	            android:layout_toRightOf="@id/dicSpinner"
+	            android:layout_alignTop="@id/dicSpinner"
+	            android:layout_alignBottom="@id/dicSpinner" />
+	        
+	        <Button 
+	            android:id="@+id/dicEnter"
+	            android:layout_width="wrap_content"
+	            android:layout_height="wrap_content"
+	            android:layout_toRightOf="@id/dicInput"
+	            android:layout_alignTop="@id/dicInput"
+	            android:layout_alignBottom="@id/dicInput"
+	            android:layout_marginRight="5dip"
+	            android:text="@string/query" />
+	        
+	        <TextView 
+	            android:id="@+id/dicDisplay"
+	            android:layout_width="match_parent"
+	            android:layout_height="wrap_content"
+	            android:layout_below="@id/dicInput"
+	            android:layout_marginTop="20dip"
+	            android:layout_centerHorizontal="true"
+	            android:gravity="center"
+	            android:text="@string/test_text"
+	            android:textSize="100dip" />
+	        
+	    </RelativeLayout>
+	
+</ScrollView>
