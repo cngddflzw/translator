@@ -28,6 +28,8 @@ public class Translator extends Thread {
 	
 	public Translator(Activity qa, String sl, String tl,
 			String qs, String qr) {
+		if (qs == null || qs.equals(""))
+			qs = " ";
 		this.queryActivity = qa;
 		this.srcLang = sl;
 		this.tgLang = tl;

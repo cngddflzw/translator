@@ -71,7 +71,7 @@ public class MainActivity extends ActivityGroup {
 		
 		// 修改tab样式
 		TabWidget tabWidget = tabs.getTabWidget();
-		int count = tabWidget.getChildCount();//TabHost中有一个getTabWidget()的方法
+		int count = tabWidget.getChildCount();
 		for (int i = 0; i < count; i++) {
 			View view = tabWidget.getChildTabViewAt(i);   
 			view.getLayoutParams().height = 150; //tabWidget.getChildAt(i)

@@ -123,7 +123,10 @@ public class DicActivity extends Activity {
 					if (result.equals(getString(R.string.networkError)))
 						result = "无法获取结果，请查看网络是否正常";
 					dicDisplay = (TextView) findViewById(R.id.dicDisplay);
-					dicDisplay.setText(result);
+					// 将 \x26#39 替换为 单引号
+					// 去除双引号并显示结果
+					result = result.replaceAll("\\\\x26#39;", "'");
+					dicDisplay.setText(result.substring(1, result.length() - 1));
 					break;
 				default:
 					break;
