@@ -10,8 +10,8 @@ import android.app.Application;
  *
  */
 public class AppContext extends Application {
-	private Set<String> newWordSet;
-	private Set<String> historySet;
+	private Set<String> newWordSet;	// 生词表
+	private Set<String> historySet;	// 历史查询表
 	
 	public Set<String> getNewWordSet() {
 		return newWordSet;

@@ -44,14 +44,14 @@
 	        
 	        <TextView 
 	            android:id="@+id/dicDisplay"
-	            android:layout_width="match_parent"
+	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
 	            android:layout_below="@id/dicInput"
 	            android:layout_marginTop="20dip"
 	            android:layout_centerHorizontal="true"
 	            android:gravity="center"
-	            android:text="@string/test_text"
-	            android:textSize="100dip" />
+	            android:padding="30dip"
+	            android:textSize="30dip" />
 	        
 	    </RelativeLayout>
 	

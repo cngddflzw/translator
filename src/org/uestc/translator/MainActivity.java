@@ -1,19 +1,13 @@
 package org.uestc.translator;
 
-import java.util.ArrayList;
-import java.util.TreeSet;
-
 import org.uestc.translator.core.LocalDatabase;
 import org.uestc.translator.core.RemoteDatabase;
 import org.uestc.translator.core.Validator;
-import org.uestc.translator.property.MainAct;
 
 import android.os.Bundle;
-import android.app.Activity;
 import android.app.ActivityGroup;
 import android.content.Intent;
 import android.graphics.Color;
-import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -54,23 +48,23 @@ public class MainActivity extends ActivityGroup {
 		tabs.setup(this.getLocalActivityManager());
 		
 		// 初始化词典tab
-		TabHost.TabSpec spec = tabs.newTabSpec(MainAct.dicName);
+		TabHost.TabSpec spec = tabs.newTabSpec(getString(R.string.dic));
 		Intent intent = new Intent().setClass(this, DicActivity.class);
-		spec.setIndicator(MainAct.dicIndicator);
+		spec.setIndicator(getString(R.string.dic));
 		spec.setContent(intent);
 		tabs.addTab(spec);
 		
 		// 初始化生词tab
 		intent = new Intent().setClass(this, NewWordActivity.class);
-		spec = tabs.newTabSpec(MainAct.newWordName);
-		spec.setIndicator(MainAct.newWordIndicator);
+		spec = tabs.newTabSpec(getString(R.string.newWord));
+		spec.setIndicator(getString(R.string.newWord));
 		spec.setContent(intent);
 		tabs.addTab(spec);
 		
 		// 初始化历史tab
 		intent = new Intent().setClass(this, HistoryActivity.class);
-		spec = tabs.newTabSpec(MainAct.historyName);
-		spec.setIndicator(MainAct.historyIndicator);
+		spec = tabs.newTabSpec(getString(R.string.history));
+		spec.setIndicator(getString(R.string.history));
 		spec.setContent(intent);
 		tabs.addTab(spec);
 		tabs.setCurrentTab(0);

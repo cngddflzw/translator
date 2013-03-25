@@ -16,6 +16,17 @@
     <string name="username">用户名</string>
     <string name="passwd">密码</string>
     <string name="pwdrepeat">重复密码</string>
+    <string name="querying">正在查询，请稍候</string>
+    <string name="dic">词典</string>
+    <string name="newWord">生词</string>
+    <string name="history">历史</string>
+    <string name="cn2en">中->英</string>
+    <string name="en2cn">英->中</string>
+    <string name="srcLang">srcLang</string>
+    <string name="tgLang">tgLang</string>
+    <string name="queryString">queryString</string>
+    <string name="queryResult">queryResult</string>
+    <string name="networkError">#404</string>
     <string name="title_activity_dic">DicActivity</string>
     <string name="title_activity_history">HistoryActivity</string>
     <string name="title_activity_new_word">NewWordActivity</string>
@@ -23,5 +34,6 @@
     <string name="title_activity_bottom_menu">BottomMenu</string>
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_register">RegisterActivity</string>
+    <string name="title_activity_query">QueryActivity</string>
 
 </resources>

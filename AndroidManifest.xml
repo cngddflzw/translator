@@ -7,9 +7,11 @@
     <uses-sdk
         android:minSdkVersion="8"
         android:targetSdkVersion="16" />
+    
+    <uses-permission android:name="android.permission.INTERNET" />
 
     <application
-        android:name=".AppContext"
+        android:name="org.uestc.translator.AppContext"
         android:allowBackup="true"
         android:icon="@drawable/ic_launcher"
         android:label="@string/app_name"
@@ -50,6 +52,11 @@
         <activity
             android:name="org.uestc.translator.RegisterActivity"
             android:label="@string/title_activity_register" >
+        </activity>
+        <activity
+            android:name="org.uestc.translator.QueryActivity"
+            android:label="@string/title_activity_query"
+            android:theme="@android:style/Theme.Dialog" >
         </activity>
     </application>
 
