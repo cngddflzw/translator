@@ -28,8 +28,6 @@ public class Translator extends Thread {
 	
 	public Translator(Activity qa, String sl, String tl,
 			String qs, String qr) {
-		if (qs == null || qs.equals(""))
-			qs = " ";
 		this.queryActivity = qa;
 		this.srcLang = sl;
 		this.tgLang = tl;
@@ -71,7 +69,7 @@ public class Translator extends Thread {
 			while ((s = in.readLine()) != null)
 				result.append(s);
 			queryResult = result.toString();
-			Log.i("测试查询结果", queryResult);
+//			Log.i("测试查询结果", queryResult);
 			
 			// 返回查询结果
 			Intent intent = queryActivity.getIntent();

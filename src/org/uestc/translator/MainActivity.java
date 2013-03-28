@@ -1,5 +1,7 @@
 package org.uestc.translator;
 
+import java.util.TreeSet;
+
 import org.uestc.translator.core.LocalDatabase;
 import org.uestc.translator.core.RemoteDatabase;
 import org.uestc.translator.core.Validator;
@@ -14,10 +16,13 @@ import android.view.View;
 import android.view.Window;
 import android.view.WindowManager;
 import android.widget.TabHost;
+import android.widget.TabHost.OnTabChangeListener;
 import android.widget.TabWidget;
 import android.widget.TextView;
 
 public class MainActivity extends ActivityGroup {
+	private LocalDatabase ldb;
+	private TabHost tabs;
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -30,32 +35,35 @@ public class MainActivity extends ActivityGroup {
 		setContentView(R.layout.activity_main);
 
 		AppContext appContext = (AppContext) getApplicationContext();
+		ldb = new LocalDatabase(this);
 		
 		// 初始化生词
 		if (Validator.validateLoginStatus() < 0)
-			appContext.setNewWordSet(LocalDatabase.getNewWords());
+			appContext.setNewWordSet(ldb.getNewWords());
 		else
 			appContext.setNewWordSet(RemoteDatabase.getNewWords());
 		
 		// 初始化历史词语
 		if (Validator.validateLoginStatus() < 0)
-			appContext.setHistorySet(LocalDatabase.getHistory());
+			appContext.setHistorySet(ldb.getHistory());
 		else
 			appContext.setHistorySet(RemoteDatabase.getHistory());
 		
 		// 初始化tabhost
-		TabHost tabs = (TabHost) findViewById(R.id.mainTabhost);
+		tabs = (TabHost) findViewById(R.id.mainTabhost);
 		tabs.setup(this.getLocalActivityManager());
 		
 		// 初始化词典tab
 		TabHost.TabSpec spec = tabs.newTabSpec(getString(R.string.dic));
 		Intent intent = new Intent().setClass(this, DicActivity.class);
+		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);	// tab选择时重新加载intent内容
 		spec.setIndicator(getString(R.string.dic));
 		spec.setContent(intent);
 		tabs.addTab(spec);
 		
 		// 初始化生词tab
 		intent = new Intent().setClass(this, NewWordActivity.class);
+		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		spec = tabs.newTabSpec(getString(R.string.newWord));
 		spec.setIndicator(getString(R.string.newWord));
 		spec.setContent(intent);
@@ -63,6 +71,7 @@ public class MainActivity extends ActivityGroup {
 		
 		// 初始化历史tab
 		intent = new Intent().setClass(this, HistoryActivity.class);
+		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		spec = tabs.newTabSpec(getString(R.string.history));
 		spec.setIndicator(getString(R.string.history));
 		spec.setContent(intent);
@@ -79,7 +88,8 @@ public class MainActivity extends ActivityGroup {
 			tv.setTextSize(30);
 			tv.setTextColor(Color.BLACK);
 		}
-		 
+		
+		appContext.setMainActivity(this);
 	}
 	
 	@Override
@@ -123,5 +133,18 @@ public class MainActivity extends ActivityGroup {
 				break;
 		}
 		return super.onOptionsItemSelected(item);
+	}
+
+	@Override
+	protected void onStop() {
+		// 保存历史查询单词和生词
+		AppContext ac = (AppContext) getApplicationContext();
+		ldb.addHistory(ac.getHistorySet());
+		ldb.addNewWord(ac.getNewWordSet());
+		super.onStop();
+	}
+
+	public TabHost getTabs() {
+		return tabs;
 	}
 }

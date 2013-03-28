@@ -4,11 +4,14 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
+
+import org.uestc.translator.core.LocalDatabase;
 import org.uestc.translator.core.Validator;
 
 import android.os.Bundle;
 import android.app.Activity;
 import android.content.Intent;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -88,21 +91,9 @@ public class DicActivity extends Activity {
 		
 		// 查询按钮
 		queryBtn = (Button) findViewById(R.id.dicEnter);
-		queryBtn.setOnClickListener(new OnClickListener() {
-			
-			@Override
-			public void onClick(View arg0) {
-				// 启动单词查询Activity
-				Intent intent = new Intent(DicActivity.this, QueryActivity.class);
-				Bundle queryParam = new Bundle();
-				queryParam.putString(getString(R.string.srcLang), srcLang);
-				queryParam.putString(getString(R.string.tgLang), tgLang);
-				queryParam.putString(getString(R.string.queryString), dicInput.getText().toString());
-				intent.putExtras(queryParam);
-				startActivityForResult(intent, REQUEST_CODE);
-			}
-			
-		});
+		queryBtn.setOnClickListener(new QueryBtnOnClickListener());
+		
+		appContext.setDicActivity(this);
 	}
 
 	@Override
@@ -121,10 +112,12 @@ public class DicActivity extends Activity {
 					Bundle b = data.getExtras();
 					String result = b.getString(getString(R.string.queryResult));
 					if (result.equals(getString(R.string.networkError)))
-						result = "无法获取结果，请查看网络是否正常";
+						result = "\"无法获取结果，请查看网络是否正常\"";
 					dicDisplay = (TextView) findViewById(R.id.dicDisplay);
 					// 将 \x26#39 替换为 单引号
 					// 去除双引号并显示结果
+					AppContext ac = (AppContext) getApplicationContext();
+					dicInput.setText(ac.getQueryString());
 					result = result.replaceAll("\\\\x26#39;", "'");
 					dicDisplay.setText(result.substring(1, result.length() - 1));
 					break;
@@ -133,4 +126,55 @@ public class DicActivity extends Activity {
 			}
 		}
 	}
+	
+	class QueryBtnOnClickListener implements OnClickListener {
+		
+		@Override
+		public void onClick(View arg0) {
+			String queryString = dicInput.getText().toString();
+			
+			// 清除无效数据
+			if (queryString == null || queryString.equals(""))
+				return;
+			
+			// 将查询的单词加入历史记录
+			AppContext appContext = (AppContext) getApplicationContext();
+			appContext.getHistorySet().add(dicInput.getText().toString());
+			
+			// 启动单词查询Activity
+			Intent intent = new Intent(DicActivity.this, QueryActivity.class);
+			Bundle queryParam = new Bundle();
+			queryParam.putString(getString(R.string.srcLang), srcLang);
+			queryParam.putString(getString(R.string.tgLang), tgLang);
+			queryParam.putString(getString(R.string.queryString), queryString);
+			intent.putExtras(queryParam);
+			startActivityForResult(intent, REQUEST_CODE);
+			
+		}
+	}
+
+	public AutoCompleteTextView getDicInput() {
+		return dicInput;
+	}
+
+	public String getSrcLang() {
+		return srcLang;
+	}
+
+	public void setSrcLang(String srcLang) {
+		this.srcLang = srcLang;
+	}
+
+	public String getTgLang() {
+		return tgLang;
+	}
+
+	public void setTgLang(String tgLang) {
+		this.tgLang = tgLang;
+	}
+
+	public Button getQueryBtn() {
+		return queryBtn;
+	}
+	
 }
