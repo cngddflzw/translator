@@ -23,7 +23,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 public class DicActivity extends Activity {
-	private final int REQUEST_CODE = 1;
+	private final int QUERY_REQUEST_CODE = 1;
 	private String srcLang = "zh_CN";	// 翻译源语言
 	private String tgLang = "en";	// 翻译目标语言
 	private List<String> spnList = new ArrayList<String>();	// 下拉菜单内容
@@ -33,6 +33,7 @@ public class DicActivity extends Activity {
 	private List<String> autoText;
 	private ArrayAdapter<String> inputAdapter;
 	private Button queryBtn; 	// 查询按钮
+	private Button addNewWordBtn; 	// 查询按钮
 	private TextView dicDisplay;	// 结果现实文本
 
 	@Override
@@ -93,6 +94,25 @@ public class DicActivity extends Activity {
 		queryBtn = (Button) findViewById(R.id.dicEnter);
 		queryBtn.setOnClickListener(new QueryBtnOnClickListener());
 		
+		// 添加生词按钮
+		addNewWordBtn = (Button) findViewById(R.id.dicAddNewWord);
+		addNewWordBtn.setOnClickListener(new OnClickListener() {
+
+			@Override
+			public void onClick(View arg0) {
+				// 将生词加入生词本
+				String newWord = dicInput.getText().toString();
+				if (newWord == null || newWord.equals(""))
+					return;
+				AppContext ac = (AppContext) getApplicationContext();
+				ac.getNewWordSet().add(newWord);
+				// 显示添加成功信息
+				Intent intent = new Intent(DicActivity.this, AddNewWordActivity.class);
+				startActivity(intent);
+			}
+			
+		});
+		
 		appContext.setDicActivity(this);
 	}
 
@@ -106,7 +126,7 @@ public class DicActivity extends Activity {
 	@Override
 	protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 		// 接收单词查询数据并显示
-		if (requestCode == this.REQUEST_CODE) {
+		if (requestCode == QUERY_REQUEST_CODE) {
 			switch (resultCode) {
 				case RESULT_OK:
 					Bundle b = data.getExtras();
@@ -140,6 +160,7 @@ public class DicActivity extends Activity {
 			// 将查询的单词加入历史记录
 			AppContext appContext = (AppContext) getApplicationContext();
 			appContext.getHistorySet().add(dicInput.getText().toString());
+			appContext.setQueryString(queryString);
 			
 			// 启动单词查询Activity
 			Intent intent = new Intent(DicActivity.this, QueryActivity.class);
@@ -148,7 +169,7 @@ public class DicActivity extends Activity {
 			queryParam.putString(getString(R.string.tgLang), tgLang);
 			queryParam.putString(getString(R.string.queryString), queryString);
 			intent.putExtras(queryParam);
-			startActivityForResult(intent, REQUEST_CODE);
+			startActivityForResult(intent, QUERY_REQUEST_CODE);
 			
 		}
 	}

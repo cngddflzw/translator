@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-<string name="app_name">Translator</string>
+
+    <string name="app_name">谷歌大词典</string>
     <string name="action_settings">Settings</string>
     <string name="hello_world">Hello world!</string>
     <string name="title">谷歌词典</string>
@@ -22,6 +23,10 @@
     <string name="history">历史</string>
     <string name="cn2en">中->英</string>
     <string name="en2cn">英->中</string>
+    <string name="added">添加成功</string>
+    <string name="confirmDelete">删除单词</string>
+    <string name="deleteWord">deleteWord</string>
+    <string name="deleteType">deleteType</string>
     <string name="srcLang">srcLang</string>
     <string name="tgLang">tgLang</string>
     <string name="queryString">queryString</string>
@@ -35,4 +40,7 @@
     <string name="title_activity_login">LoginActivity</string>
     <string name="title_activity_register">RegisterActivity</string>
     <string name="title_activity_query">QueryActivity</string>
+    <string name="title_activity_add_new_word">AddNewWordActivity</string>
+    <string name="title_activity_delete_word">DeleteWordActivity</string>
+
 </resources>

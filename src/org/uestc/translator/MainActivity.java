@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.app.ActivityGroup;
 import android.content.Intent;
 import android.graphics.Color;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -35,7 +36,7 @@ public class MainActivity extends ActivityGroup {
 		setContentView(R.layout.activity_main);
 
 		AppContext appContext = (AppContext) getApplicationContext();
-		ldb = new LocalDatabase(this);
+		ldb = LocalDatabase.getInstance(this);
 		
 		// 初始化生词
 		if (Validator.validateLoginStatus() < 0)
@@ -56,7 +57,8 @@ public class MainActivity extends ActivityGroup {
 		// 初始化词典tab
 		TabHost.TabSpec spec = tabs.newTabSpec(getString(R.string.dic));
 		Intent intent = new Intent().setClass(this, DicActivity.class);
-		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);	// tab选择时重新加载intent内容
+		// tab选择时重新加载tab的Activity内容
+		intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
 		spec.setIndicator(getString(R.string.dic));
 		spec.setContent(intent);
 		tabs.addTab(spec);
@@ -123,11 +125,7 @@ public class MainActivity extends ActivityGroup {
 				break;
 			case R.id.optionExit:
 				// 退出程序
-				intent = new Intent(Intent.ACTION_MAIN);
-				intent.addCategory(Intent.CATEGORY_HOME);
-				intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-				startActivity(intent);
-				android.os.Process.killProcess(android.os.Process.myPid());
+				MainActivity.this.finish();
 				break;
 			default:
 				break;
@@ -135,12 +133,15 @@ public class MainActivity extends ActivityGroup {
 		return super.onOptionsItemSelected(item);
 	}
 
+	@SuppressWarnings("deprecation")
 	@Override
 	protected void onStop() {
 		// 保存历史查询单词和生词
 		AppContext ac = (AppContext) getApplicationContext();
-		ldb.addHistory(ac.getHistorySet());
-		ldb.addNewWord(ac.getNewWordSet());
+		ldb.refreshHistory(ac.getHistorySet());
+		ldb.refreshNewWord(ac.getNewWordSet());
+//		Log.i("history", ac.getHistorySet().toString());
+//		Log.i("newWord", ac.getNewWordSet().toString());
 		super.onStop();
 	}
 

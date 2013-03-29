@@ -21,40 +21,44 @@
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
 	            android:layout_marginTop="10dip"
-	            android:layout_marginLeft="5dip"
+	            android:layout_marginLeft="8dip"
 	            android:layout_below="@id/title" />
 	        	
 	        <AutoCompleteTextView
 	            android:id="@+id/dicInput"
-	            android:layout_width="250dip"
+	            android:layout_width="match_parent"
 	            android:layout_height="wrap_content"
+	            android:layout_marginRight="8dip"
 	            android:layout_toRightOf="@id/dicSpinner"
 	            android:layout_alignTop="@id/dicSpinner"
 	            android:layout_alignBottom="@id/dicSpinner" />
 	        
-	        <Button 
-	            android:id="@+id/dicEnter"
-	            android:layout_width="85dip"
-	            android:layout_height="40dip"
-	            android:layout_below="@id/dicInput"
-	            android:layout_alignLeft="@id/dicInput"
-	            android:layout_marginTop="10dip"
-	            android:layout_marginRight="30dip"
-	            android:text="@string/query" />
-	        <Button 
-	            android:id="@+id/dicAddNewWord"
-	            android:layout_width="85dip"
-	            android:layout_height="40dip"
-	            android:layout_toRightOf="@id/dicEnter"
-	            android:layout_alignTop="@id/dicEnter"
-	            android:layout_alignBottom="@id/dicEnter"
-	            android:text="@string/addNewWord" />
+	        <LinearLayout
+	            android:id="@+id/dicButtonLayout"
+			    android:layout_width="match_parent"
+			    android:layout_height="match_parent"
+			    android:layout_margin="10dip"
+			    android:layout_below="@id/dicInput"
+			    android:gravity="center"
+			    android:orientation="horizontal" >
+		        <Button 
+		            android:id="@+id/dicEnter"
+		            android:layout_width="85dip"
+		            android:layout_height="40dip"
+		            android:layout_marginRight="15dip"
+		            android:text="@string/query" />
+		        <Button 
+		            android:id="@+id/dicAddNewWord"
+		            android:layout_width="85dip"
+		            android:layout_height="40dip"
+		            android:text="@string/addNewWord" />
+	        </LinearLayout>
 	        
 	        <TextView 
 	            android:id="@+id/dicDisplay"
 	            android:layout_width="wrap_content"
 	            android:layout_height="wrap_content"
-	            android:layout_below="@id/dicEnter"
+	            android:layout_below="@id/dicButtonLayout"
 	            android:layout_marginTop="20dip"
 	            android:layout_centerHorizontal="true"
 	            android:gravity="center"
