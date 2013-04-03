@@ -37,16 +37,6 @@ public class MainActivity extends ActivityGroup {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, 
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		setContentView(R.layout.activity_main);
-		
-		// 注册GCM
-		GCMRegistrar.checkDevice(this);
-		GCMRegistrar.checkManifest(this);
-		final String regId = GCMRegistrar.getRegistrationId(this);
-		if (regId.equals("")) {
-		  GCMRegistrar.register(this, GCM_SENDER_ID);
-		} else {
-		  Log.v("GCM verbose info", "Already registered");
-		}
 
 		AppContext appContext = (AppContext) getApplicationContext();
 		ldb = LocalDatabase.getInstance(this);

@@ -26,10 +26,20 @@
         android:inputType="text" />
     
     <TextView
+        android:id="@+id/regUsernameValid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/regUsername"
+        android:layout_alignLeft="@id/regUsername"
+        android:layout_marginTop="20dip"
+        android:textSize="18dip"
+        android:textColor="#FF0000" />
+    
+    <TextView
         android:id="@+id/regPwdLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/regUsernameLabel"
+        android:layout_below="@id/regUsernameValid"
         android:layout_marginTop="40dip"
         android:text="@string/passwd"
         android:textSize="20dip" />
@@ -43,11 +53,21 @@
         android:layout_alignLeft="@id/regPwdRepeat"
         android:inputType="textPassword" />
     
+     <TextView
+        android:id="@+id/regPwdValid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/regPwd"
+        android:layout_alignLeft="@id/regPwd"
+        android:layout_marginTop="20dip"
+        android:textSize="18dip"
+        android:textColor="#FF0000" />
+    
     <TextView
         android:id="@+id/regPwdRepeatLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_below="@id/regPwd"
+        android:layout_below="@id/regPwdValid"
         android:layout_marginTop="40dip"
         android:text="@string/pwdrepeat"
         android:textSize="20dip" />
@@ -60,13 +80,23 @@
         android:layout_alignBottom="@id/regPwdRepeatLabel"
         android:inputType="textPassword" />
     
+    <TextView
+        android:id="@+id/regPwdRepeatValid"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/regPwdRepeat"
+        android:layout_alignLeft="@id/regPwdRepeat"
+        android:layout_marginTop="20dip"
+        android:textSize="18dip"
+        android:textColor="#FF0000" />
+    
     <Button 
         android:id="@+id/regEnter"
         android:layout_width="100dip"
         android:layout_height="wrap_content"
         android:text="@string/enter"
-        android:layout_below="@id/regPwdRepeatLabel"
-        android:layout_alignLeft="@id/regPwdRepeat"
+        android:layout_below="@id/regPwdRepeatValid"
+        android:layout_alignLeft="@id/regPwdRepeatValid"
         android:layout_marginTop="20dip" />
     
     <Button 

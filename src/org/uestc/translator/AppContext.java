@@ -15,8 +15,9 @@ public class AppContext extends Application {
 	private String queryString;
 	private MainActivity mainActivity;	// MainActivity实例
 	private DicActivity dicActivity;	// DicActivity实例
-	private HistoryActivity historyActivity;	// DicActivity实例
-	private NewWordActivity newWordActivity;	// DicActivity实例
+	private HistoryActivity historyActivity;
+	private NewWordActivity newWordActivity;
+	private RegisterActivity registerActivity;
 	private Set<String> newWordSet = new TreeSet<String>();	// 生词表
 	private Set<String> historySet = new LinkedHashSet<String>();	// 历史查询表
 	
@@ -62,4 +63,11 @@ public class AppContext extends Application {
 	public void setNewWordActivity(NewWordActivity newWordActivity) {
 		this.newWordActivity = newWordActivity;
 	}
+	public RegisterActivity getRegisterActivity() {
+		return registerActivity;
+	}
+	public void setRegisterActivity(RegisterActivity registerActivity) {
+		this.registerActivity = registerActivity;
+	}
+	
 }

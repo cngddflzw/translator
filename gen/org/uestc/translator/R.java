@@ -24,7 +24,7 @@ public final class R {
         public static final int translator=0x7f020000;
     }
     public static final class id {
-        public static final int action_settings=0x7f08001b;
+        public static final int action_settings=0x7f08001e;
         public static final int deleteWordCancel=0x7f080002;
         public static final int deleteWordConfirm=0x7f080001;
         public static final int deleteWordTips=0x7f080000;
@@ -43,18 +43,21 @@ public final class R {
         public static final int loginUsernameLabel=0x7f08000b;
         public static final int mainTabhost=0x7f080011;
         public static final int newWordList=0x7f080012;
-        public static final int optionExit=0x7f08001d;
-        public static final int optionLogin=0x7f08001e;
-        public static final int optionLogout=0x7f08001c;
-        public static final int optionReg=0x7f08001f;
-        public static final int regCancel=0x7f08001a;
-        public static final int regEnter=0x7f080019;
-        public static final int regPwd=0x7f080017;
-        public static final int regPwdLabel=0x7f080016;
+        public static final int optionExit=0x7f080020;
+        public static final int optionLogin=0x7f080021;
+        public static final int optionLogout=0x7f08001f;
+        public static final int optionReg=0x7f080022;
+        public static final int regCancel=0x7f08001d;
+        public static final int regEnter=0x7f08001c;
+        public static final int regPwd=0x7f080018;
+        public static final int regPwdLabel=0x7f080017;
         public static final int regPwdRepeat=0x7f080015;
-        public static final int regPwdRepeatLabel=0x7f080018;
+        public static final int regPwdRepeatLabel=0x7f08001a;
+        public static final int regPwdRepeatValid=0x7f08001b;
+        public static final int regPwdValid=0x7f080019;
         public static final int regUsername=0x7f080014;
         public static final int regUsernameLabel=0x7f080013;
+        public static final int regUsernameValid=0x7f080016;
         public static final int title=0x7f080003;
     }
     public static final class layout {
