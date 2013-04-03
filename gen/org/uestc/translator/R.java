@@ -75,12 +75,11 @@ public final class R {
         public static final int dic=0x7f070002;
         public static final int dic_spinner=0x7f070003;
         public static final int history=0x7f070004;
-        public static final int login=0x7f070005;
-        public static final int logined_menu=0x7f070006;
-        public static final int main=0x7f070007;
-        public static final int new_word=0x7f070008;
-        public static final int query=0x7f070009;
-        public static final int unlog_menu=0x7f07000a;
+        public static final int logined_menu=0x7f070005;
+        public static final int main=0x7f070006;
+        public static final int new_word=0x7f070007;
+        public static final int query=0x7f070008;
+        public static final int unlog_menu=0x7f070009;
     }
     public static final class string {
         public static final int action_settings=0x7f050001;

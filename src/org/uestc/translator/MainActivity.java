@@ -6,6 +6,8 @@ import org.uestc.translator.core.LocalDatabase;
 import org.uestc.translator.core.RemoteDatabase;
 import org.uestc.translator.core.Validator;
 
+import com.google.android.gcm.GCMRegistrar;
+
 import android.os.Bundle;
 import android.app.ActivityGroup;
 import android.content.Intent;
@@ -24,6 +26,7 @@ import android.widget.TextView;
 public class MainActivity extends ActivityGroup {
 	private LocalDatabase ldb;
 	private TabHost tabs;
+	private static final String GCM_SENDER_ID = "Nexus_Galaxy_Alexis";
 
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
@@ -34,6 +37,16 @@ public class MainActivity extends ActivityGroup {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, 
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 		setContentView(R.layout.activity_main);
+		
+		// 注册GCM
+		GCMRegistrar.checkDevice(this);
+		GCMRegistrar.checkManifest(this);
+		final String regId = GCMRegistrar.getRegistrationId(this);
+		if (regId.equals("")) {
+		  GCMRegistrar.register(this, GCM_SENDER_ID);
+		} else {
+		  Log.v("GCM verbose info", "Already registered");
+		}
 
 		AppContext appContext = (AppContext) getApplicationContext();
 		ldb = LocalDatabase.getInstance(this);
