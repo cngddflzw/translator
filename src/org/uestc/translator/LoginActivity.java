@@ -1,5 +1,9 @@
 package org.uestc.translator;
 
+import java.util.Set;
+
+import org.uestc.translator.core.RemoteDatabase;
+
 import android.os.Bundle;
 import android.app.Activity;
 import android.app.AlertDialog;
@@ -76,6 +80,12 @@ public class LoginActivity extends Activity {
 						result = "登录成功";
 						AppContext appContext = (AppContext) getApplicationContext();
 						appContext.setUsername(usernameEt.getText().toString());
+						
+						// 将云端单词同步到本地
+						Set<String> remoteHisWords = RemoteDatabase.getHistory(appContext.getUsername());
+						Set<String> remoteNewWords = RemoteDatabase.getNewWords(appContext.getUsername());
+						appContext.setHistorySet(remoteHisWords);
+						appContext.setNewWordSet(remoteNewWords);
 					} else {
 						result = "登录失败,请检查用户名密码是否正确";
 					}

@@ -33,7 +33,7 @@ public class LoginThread extends Thread {
 	@Override
 	public void run() {
 		try {
-			Log.w("用户登录", "开始登录");
+//			Log.w("用户登录", "开始登录");
 			String urlStr = "http://uestctranslator.appspot.com/login";
 			URL url = new URL(urlStr);
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
@@ -65,9 +65,9 @@ public class LoginThread extends Thread {
 			}
 			laing.setResult(Activity.RESULT_OK);
 			laing.finish();
-			Log.w("用户登录", "结束登录");
-			Log.w("用户登录", "登录结果: " + la.loginResult);
-			Log.w("用户登录", "登录结果: " + resultStr);
+//			Log.w("用户登录", "结束登录");
+//			Log.w("用户登录", "登录结果: " + la.loginResult);
+//			Log.w("用户登录", "登录结果: " + resultStr);
 		} catch (Exception e) {
 			e.printStackTrace();
 		}

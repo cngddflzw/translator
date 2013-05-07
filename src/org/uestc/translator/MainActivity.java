@@ -42,16 +42,10 @@ public class MainActivity extends ActivityGroup {
 		ldb = LocalDatabase.getInstance(this);
 		
 		// 初始化生词
-		if (Validator.validateLoginStatus() < 0)
-			appContext.setNewWordSet(ldb.getNewWords());
-		else
-			appContext.setNewWordSet(RemoteDatabase.getNewWords());
+		appContext.setNewWordSet(ldb.getNewWords());
 		
 		// 初始化历史词语
-		if (Validator.validateLoginStatus() < 0)
-			appContext.setHistorySet(ldb.getHistory());
-		else
-			appContext.setHistorySet(RemoteDatabase.getHistory());
+		appContext.setHistorySet(ldb.getHistory());
 		
 		// 初始化tabhost
 		tabs = (TabHost) findViewById(R.id.mainTabhost);
