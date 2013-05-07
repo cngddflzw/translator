@@ -8,16 +8,26 @@
     android:paddingTop="@dimen/activity_vertical_margin"
     tools:context=".RegisterActivity" >
 
+    <Button 
+       android:id="@+id/regUnameDupBtn"
+       android:layout_width="wrap_content"
+       android:layout_height="wrap_content"
+       android:layout_marginTop="50dip"
+       android:layout_alignLeft="@+id/regUsername"
+       android:text="@string/unameDupCheck"
+       android:textSize="18dip" />
+    
     <TextView
         android:id="@+id/regUsernameLabel"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="100dip"
+        android:layout_marginTop="40dip"
+        android:layout_below="@id/regUnameDupBtn"
         android:text="@string/username"
         android:textSize="20dip" />
     
     <EditText
-        android:id="@+id/regUsername"
+        android:id="@id/regUsername"
         android:layout_width="match_parent"
         android:layout_height="50dip"
         android:layout_toRightOf="@+id/regUsernameLabel"

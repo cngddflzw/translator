@@ -1,0 +1,36 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".DeleteWordActivity" >
+
+    <TextView
+        android:id="@+id/deleteWordTips"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_margin="15dip"
+        android:textSize="15dip" />
+    
+    <LinearLayout 
+	    android:layout_width="match_parent"
+	    android:layout_height="match_parent"
+	    android:gravity="center"
+	    android:orientation="horizontal" >
+	    <Button
+	        android:id="@+id/deleteWordConfirm"
+	        android:layout_width="90dip"
+	        android:layout_height="wrap_content"
+	       	android:text="@string/enter"
+	       	android:textSize="12dip" />
+	    
+	    <Button
+	        android:id="@+id/deleteWordCancel"
+	        android:layout_width="90dip"
+	        android:layout_height="wrap_content"
+	        android:layout_marginLeft="15dip"
+	       	android:text="@string/cancel"
+	       	android:textSize="12dip" />
+    </LinearLayout>
+
+</LinearLayout>

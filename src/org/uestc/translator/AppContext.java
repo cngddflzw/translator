@@ -18,9 +18,17 @@ public class AppContext extends Application {
 	private HistoryActivity historyActivity;
 	private NewWordActivity newWordActivity;
 	private RegisterActivity registerActivity;
+	private LoginActivity loginActivity;
+	private String username;	// 登录用户用户名
 	private Set<String> newWordSet = new TreeSet<String>();	// 生词表
 	private Set<String> historySet = new LinkedHashSet<String>();	// 历史查询表
 	
+	public LoginActivity getLoginActivity() {
+		return loginActivity;
+	}
+	public void setLoginActivity(LoginActivity loginActivity) {
+		this.loginActivity = loginActivity;
+	}
 	public DicActivity getDicActivity() {
 		return dicActivity;
 	}
@@ -68,6 +76,12 @@ public class AppContext extends Application {
 	}
 	public void setRegisterActivity(RegisterActivity registerActivity) {
 		this.registerActivity = registerActivity;
+	}
+	public String getUsername() {
+		return username;
+	}
+	public void setUsername(String username) {
+		this.username = username;
 	}
 	
 }

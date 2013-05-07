@@ -38,7 +38,7 @@ public class Validator {
 	 * @return
 	 */
 	public static int validateRegPwd(String pwd) {
-		// 合法性为只能使用字母数字
+		// 合法性为只能使用6-14位字母数字
 		Pattern p = Pattern.compile("[a-zA-Z0-9]{6,14}");
 		Matcher m = p.matcher(pwd);
 		if (m.find())

@@ -14,10 +14,12 @@
     <string name="logout">注销</string>
     <string name="exit">退出</string>
     <string name="register">注册</string>
+    <string name="unameDupCheck">检测用户名</string>
     <string name="username">用户名</string>
     <string name="passwd">密码</string>
     <string name="pwdrepeat">重复密码</string>
     <string name="querying">正在查询，请稍候</string>
+    <string name="reging">正在注册，请稍候</string>
     <string name="dic">词典</string>
     <string name="newWord">生词</string>
     <string name="history">历史</string>
@@ -31,6 +33,7 @@
     <string name="tgLang">tgLang</string>
     <string name="queryString">queryString</string>
     <string name="queryResult">queryResult</string>
+    <string name="regResult">regResult</string>
     <string name="networkError">#404</string>
     <string name="title_activity_dic">DicActivity</string>
     <string name="title_activity_history">HistoryActivity</string>
@@ -42,5 +45,7 @@
     <string name="title_activity_query">QueryActivity</string>
     <string name="title_activity_add_new_word">AddNewWordActivity</string>
     <string name="title_activity_delete_word">DeleteWordActivity</string>
+    <string name="title_activity_reging">RegingActivity</string>
+    <string name="title_activity_logining">LoginingActivity</string>
 
 </resources>
