@@ -1,14 +1,20 @@
 package org.uestc.translator;
 
 import java.util.TreeSet;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
+import org.uestc.translator.core.DlHisWordsThread;
+import org.uestc.translator.core.DlNewWordsThread;
 import org.uestc.translator.core.LocalDatabase;
 import org.uestc.translator.core.RemoteDatabase;
+import org.uestc.translator.core.UploadWordsThread;
 import org.uestc.translator.core.Validator;
 
 import com.google.android.gcm.GCMRegistrar;
 
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.app.ActivityGroup;
 import android.content.Intent;
 import android.graphics.Color;
@@ -31,6 +37,21 @@ public class MainActivity extends ActivityGroup {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
+		
+        // 详见StrictMode文档
+//        StrictMode.setThreadPolicy(new StrictMode.ThreadPolicy.Builder()
+//                .detectDiskReads()
+//                .detectDiskWrites()
+//                .detectNetwork()   // or .detectAll() for all detectable problems
+//                .penaltyLog()
+//                .build());
+//        StrictMode.setVmPolicy(new StrictMode.VmPolicy.Builder()
+//                .detectLeakedSqlLiteObjects()
+//                .detectLeakedClosableObjects()
+//                .penaltyLog()
+//                .penaltyDeath()
+//                .build());
+		
 		// 隐藏程序标题
         this.requestWindowFeature(Window.FEATURE_NO_TITLE);
         // 隐藏状态栏
@@ -106,6 +127,13 @@ public class MainActivity extends ActivityGroup {
 	public boolean onOptionsItemSelected(MenuItem item) {
 		Intent intent;
 		switch (item.getItemId()) {
+			case R.id.optionUpW:
+				AppContext ac = (AppContext) getApplicationContext();
+				ExecutorService exec = Executors.newCachedThreadPool(); 
+				Thread tUpWords = new UploadWordsThread(ac);
+				exec.execute(tUpWords);
+				exec.shutdown();
+				break;
 			case R.id.optionLogin:
 				// 进入登录界面
 				intent = new Intent();
@@ -135,8 +163,13 @@ public class MainActivity extends ActivityGroup {
 	protected void onStop() {
 		// 保存历史查询单词和生词
 		AppContext ac = (AppContext) getApplicationContext();
-		ldb.refreshHistory(ac.getHistorySet());
-		ldb.refreshNewWord(ac.getNewWordSet());
+//		if (ac.getUsername() != null) {
+//			RemoteDatabase.addHisNewWords(ac.getUsername(),
+//					ac.getHistorySet(), ac.getNewWordSet());
+//		} else {
+			ldb.refreshHistory(ac.getHistorySet());
+			ldb.refreshNewWord(ac.getNewWordSet());
+//		}
 //		Log.i("history", ac.getHistorySet().toString());
 //		Log.i("newWord", ac.getNewWordSet().toString());
 		super.onStop();

@@ -3,17 +3,9 @@ package org.uestc.translator.core;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import org.uestc.translator.AppContext;
+
 public class Validator {
-	/**
-	 * 验证登录帐号密码
-	 * @param username
-	 * @param passwd
-	 * @return
-	 */
-	public static int validateLogin(
-			String username, String passwd) {
-		return 1;
-	}
 	
 	/**
 	 * 验证注册帐号合法性

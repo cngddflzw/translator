@@ -48,6 +48,7 @@ public final class R {
         public static final int optionLogin=0x7f080024;
         public static final int optionLogout=0x7f080022;
         public static final int optionReg=0x7f080025;
+        public static final int optionUpW=0x7f080026;
         public static final int regCancel=0x7f080020;
         public static final int regEnter=0x7f08001f;
         public static final int regPwd=0x7f08001b;

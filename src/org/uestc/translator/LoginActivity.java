@@ -1,7 +1,11 @@
 package org.uestc.translator;
 
 import java.util.Set;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
 
+import org.uestc.translator.core.DlHisWordsThread;
+import org.uestc.translator.core.DlNewWordsThread;
 import org.uestc.translator.core.RemoteDatabase;
 
 import android.os.Bundle;
@@ -10,6 +14,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.util.Log;
 import android.view.Menu;
 import android.view.View;
 import android.view.View.OnClickListener;
@@ -82,10 +87,12 @@ public class LoginActivity extends Activity {
 						appContext.setUsername(usernameEt.getText().toString());
 						
 						// 将云端单词同步到本地
-						Set<String> remoteHisWords = RemoteDatabase.getHistory(appContext.getUsername());
-						Set<String> remoteNewWords = RemoteDatabase.getNewWords(appContext.getUsername());
-						appContext.setHistorySet(remoteHisWords);
-						appContext.setNewWordSet(remoteNewWords);
+						ExecutorService exec = Executors.newCachedThreadPool(); 
+						Thread tDlHis = new DlHisWordsThread(appContext);
+						Thread tDlNew = new DlNewWordsThread(appContext);
+						exec.execute(tDlHis);
+						exec.execute(tDlNew);
+						exec.shutdown();
 					} else {
 						result = "登录失败,请检查用户名密码是否正确";
 					}
