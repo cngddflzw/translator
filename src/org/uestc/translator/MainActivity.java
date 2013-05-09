@@ -16,6 +16,9 @@ import com.google.android.gcm.GCMRegistrar;
 import android.os.Bundle;
 import android.os.StrictMode;
 import android.app.ActivityGroup;
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.util.Log;
@@ -116,23 +119,41 @@ public class MainActivity extends ActivityGroup {
 	public boolean onPrepareOptionsMenu(Menu menu) {
 		// 根据登录状态动态改变菜单内容
 		menu.clear();
-		if (Validator.validateLoginStatus() < 0)
+		AppContext ac = (AppContext) getApplicationContext();
+		if (ac.getUsername() == null || ac.getUsername().equals("")) {
 			getMenuInflater().inflate(R.menu.unlog_menu, menu);
-		else
+			super.onPrepareOptionsMenu(menu);
+		} else {
 			getMenuInflater().inflate(R.menu.logined_menu, menu);
-		return super.onPrepareOptionsMenu(menu);
+			super.onPrepareOptionsMenu(menu);
+			menu.getItem(0).setTitle("当前用户: " + ac.getUsername());
+		}
+		return true;
 	}
 
 	@Override
 	public boolean onOptionsItemSelected(MenuItem item) {
 		Intent intent;
+		AppContext ac = (AppContext) getApplicationContext();
 		switch (item.getItemId()) {
+			// 上传单词
 			case R.id.optionUpW:
-				AppContext ac = (AppContext) getApplicationContext();
 				ExecutorService exec = Executors.newCachedThreadPool(); 
 				Thread tUpWords = new UploadWordsThread(ac);
 				exec.execute(tUpWords);
 				exec.shutdown();
+				Dialog dialog = new AlertDialog.Builder(MainActivity.this).setIcon(
+					     android.R.drawable.btn_star).setTitle(null).setMessage(
+					    		 "上传完成").setPositiveButton("确定",
+					     new DialogInterface.OnClickListener() {
+
+							@Override
+							public void onClick(DialogInterface dialog,
+									int which) {
+								return;
+							}
+					     }).create();
+				dialog.show();
 				break;
 			case R.id.optionLogin:
 				// 进入登录界面
@@ -141,6 +162,7 @@ public class MainActivity extends ActivityGroup {
 				startActivity(intent);
 				break;
 			case R.id.optionLogout:
+				ac.setUsername(null);
 				break;
 			case R.id.optionReg:
 				// 进入注册界面
@@ -161,17 +183,10 @@ public class MainActivity extends ActivityGroup {
 	@SuppressWarnings("deprecation")
 	@Override
 	protected void onStop() {
-		// 保存历史查询单词和生词
+		// 保存本地历史查询单词和生词
 		AppContext ac = (AppContext) getApplicationContext();
-//		if (ac.getUsername() != null) {
-//			RemoteDatabase.addHisNewWords(ac.getUsername(),
-//					ac.getHistorySet(), ac.getNewWordSet());
-//		} else {
-			ldb.refreshHistory(ac.getHistorySet());
-			ldb.refreshNewWord(ac.getNewWordSet());
-//		}
-//		Log.i("history", ac.getHistorySet().toString());
-//		Log.i("newWord", ac.getNewWordSet().toString());
+		ldb.refreshHistory(ac.getHistorySet());
+		ldb.refreshNewWord(ac.getNewWordSet());
 		super.onStop();
 	}
 

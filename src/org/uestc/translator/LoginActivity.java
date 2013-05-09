@@ -1,12 +1,10 @@
 package org.uestc.translator;
 
-import java.util.Set;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
 import org.uestc.translator.core.DlHisWordsThread;
 import org.uestc.translator.core.DlNewWordsThread;
-import org.uestc.translator.core.RemoteDatabase;
 
 import android.os.Bundle;
 import android.app.Activity;
@@ -14,8 +12,7 @@ import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.util.Log;
-import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.Window;
@@ -104,6 +101,7 @@ public class LoginActivity extends Activity {
 								@Override
 								public void onClick(DialogInterface dialog,
 										int which) {
+									LoginActivity.this.finish();
 									return;
 								}
 						     }).create();

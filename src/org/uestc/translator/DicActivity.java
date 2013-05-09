@@ -81,10 +81,7 @@ public class DicActivity extends Activity {
 		// 准备自动补全文本
 		dicInput = (AutoCompleteTextView) findViewById(R.id.dicInput);
 		Set<String> autoTextSet = new TreeSet<String>();
-		if (Validator.validateLoginStatus() < 0)
-			autoTextSet = new TreeSet<String>(appContext.getHistorySet());
-		else
-			autoTextSet = new TreeSet<String>(appContext.getHistorySet());
+		autoTextSet = new TreeSet<String>(appContext.getHistorySet());
 		autoText = new ArrayList<String>(autoTextSet);
 		inputAdapter = new ArrayAdapter<String>(this, 
 				android.R.layout.simple_dropdown_item_1line, autoText);

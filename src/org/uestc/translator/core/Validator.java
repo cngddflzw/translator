@@ -39,14 +39,6 @@ public class Validator {
 			return -1;
 	}
 	
-	/**
-	 * 检查用户是否登录
-	 * @return
-	 */
-	public static int validateLoginStatus() {
-		return -1;
-	}
-	
 	public static void main(String[] args) {
 		String t = "tttttttalexis_k0913";
 		System.out.println(validateRegUsername(t));

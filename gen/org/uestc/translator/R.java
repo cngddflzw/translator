@@ -44,11 +44,12 @@ public final class R {
         public static final int loginUsernameLabel=0x7f08000b;
         public static final int mainTabhost=0x7f080012;
         public static final int newWordList=0x7f080013;
-        public static final int optionExit=0x7f080023;
-        public static final int optionLogin=0x7f080024;
-        public static final int optionLogout=0x7f080022;
-        public static final int optionReg=0x7f080025;
-        public static final int optionUpW=0x7f080026;
+        public static final int optionCurrentUser=0x7f080022;
+        public static final int optionExit=0x7f080025;
+        public static final int optionLogin=0x7f080026;
+        public static final int optionLogout=0x7f080024;
+        public static final int optionReg=0x7f080027;
+        public static final int optionUpW=0x7f080023;
         public static final int regCancel=0x7f080020;
         public static final int regEnter=0x7f08001f;
         public static final int regPwd=0x7f08001b;
