@@ -47,5 +47,7 @@
     <string name="title_activity_delete_word">DeleteWordActivity</string>
     <string name="title_activity_reging">RegingActivity</string>
     <string name="title_activity_logining">LoginingActivity</string>
+    <string name="title_activity_word_test">WordTestActivity</string>
+    <string name="title_activity_test_result">TestResultActivity</string>
 
 </resources>

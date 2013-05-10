@@ -6,6 +6,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.List;
 
 import org.uestc.translator.R;
 
@@ -24,7 +25,12 @@ public class Translator extends Thread {
 	private String tgLang;	// 目标语言
 	private String queryString;	// 待翻译文本
 	private String queryResult;	// 翻译结果
+	private List<String> correctWords;
+	private int index;
 	private Activity queryActivity;	// 翻译Activity
+	private final String urlStr = 
+			"http://translate.googleapis.com/translate_a/t?" +
+	"anno=3&client=te&format=html&v=1.0&logld=v10";
 	
 	public Translator(Activity qa, String sl, String tl,
 			String qs, String qr) {
@@ -35,17 +41,18 @@ public class Translator extends Thread {
 		this.queryResult = qr;
 	}
 	
-	/**
-	 * 翻译核心方法
-	 * @return
-	 * @throws IOException
-	 */
-	@Override
-	public void run() {
+	public Translator(String srcLang2, String tgLang2, String originWord,
+			List<String> correctWords, int index) {
+		this.srcLang = srcLang2;
+		this.tgLang = tgLang2;
+		this.queryString = originWord;
+		this.queryResult = new String();
+		this.correctWords = correctWords;
+		this.index = index;
+	}
+
+	public String tanslate() {
 		try {
-			String urlStr = 
-					"http://translate.googleapis.com/translate_a/t?" +
-			"anno=3&client=te&format=html&v=1.0&logld=v10";
 			URL url = new URL(urlStr);
 			HttpURLConnection conn = (HttpURLConnection) url.openConnection();
 			conn.setDoOutput(true);	// 可以发送数据
@@ -69,17 +76,33 @@ public class Translator extends Thread {
 			while ((s = in.readLine()) != null)
 				result.append(s);
 			queryResult = result.toString();
-//			Log.i("测试查询结果", queryResult);
-			
-			// 返回查询结果
-			Intent intent = queryActivity.getIntent();
-			Bundle resultBundle = new Bundle();
-			resultBundle.putString(queryActivity.getString(R.string.queryResult), queryResult);
-			intent.putExtras(resultBundle);
-			queryActivity.setResult(Activity.RESULT_OK, intent);
-			queryActivity.finish();
+			return queryResult;
 		} catch (IOException e) {
 			e.printStackTrace();
 		}
+		return "";
+	}
+	
+	/**
+	 * 翻译核心方法
+	 * @return
+	 * @throws IOException
+	 */
+	@Override
+	public void run() {
+//			Log.i("测试查询结果", queryResult);
+			
+			// 返回查询结果
+			String result = tanslate();
+			if (correctWords != null)
+				correctWords.set(index, result.substring(1, result.length() - 1));
+			if (queryActivity != null) {
+				Intent intent = queryActivity.getIntent();
+				Bundle resultBundle = new Bundle();
+				resultBundle.putString(queryActivity.getString(R.string.queryResult), result);
+				intent.putExtras(resultBundle);
+				queryActivity.setResult(Activity.RESULT_OK, intent);
+				queryActivity.finish();
+			}
 	}
 }

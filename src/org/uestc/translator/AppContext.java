@@ -1,6 +1,8 @@
 package org.uestc.translator;
 
+import java.util.ArrayList;
 import java.util.LinkedHashSet;
+import java.util.List;
 import java.util.Set;
 import java.util.TreeSet;
 
@@ -22,7 +24,29 @@ public class AppContext extends Application {
 	private String username;	// 登录用户用户名
 	private Set<String> newWordSet = new TreeSet<String>();	// 生词表
 	private Set<String> historySet = new LinkedHashSet<String>();	// 历史查询表
+	private List<String> originWords = new ArrayList<String>();	// 测试原词
+	private List<String> transWords = new ArrayList<String>();	// 测试用户翻译词语
+	private List<String> correctWords = new ArrayList<String>();	// 测试中正确翻译结果
 	
+	
+	public List<String> getCorrectWords() {
+		return correctWords;
+	}
+	public void setCorrectWords(List<String> correctWors) {
+		this.correctWords = correctWors;
+	}
+	public List<String> getOriginWords() {
+		return originWords;
+	}
+	public void setOriginWords(List<String> originWords) {
+		this.originWords = originWords;
+	}
+	public List<String> getTransWords() {
+		return transWords;
+	}
+	public void setTransWords(List<String> transWords) {
+		this.transWords = transWords;
+	}
 	public LoginActivity getLoginActivity() {
 		return loginActivity;
 	}

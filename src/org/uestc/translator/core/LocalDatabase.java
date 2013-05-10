@@ -1,5 +1,6 @@
 package org.uestc.translator.core;
 
+import java.util.HashSet;
 import java.util.LinkedHashSet;
 import java.util.Set;
 import java.util.TreeSet;
@@ -153,6 +154,55 @@ public class LocalDatabase {
 		}
 		db.setTransactionSuccessful();
 		db.endTransaction(); 
+	}
+	
+	/**
+	 * 获取所有出错单词
+	 * @return
+	 */
+	public Set<String> getMistakeWords() {
+		Set<String> set = new HashSet<String>();
+		try {
+			cursor = db.query(DbHelper.TB_MISTAKE, null, null, null, null, null,
+					DbHelper.COL_MISTAKE_TIME + " DESC", "10");
+			cursor.moveToFirst();
+			while (!cursor.isAfterLast()) {
+				String word = cursor.getString(1);
+				set.add(word);
+				cursor.moveToNext();
+			}
+		} finally {
+			cursor.close();
+		}
+		return set;
+	}
+	
+	/**
+	 * 添加出错单词
+	 * @param word
+	 */
+	public long addMistakeWord(String word) {
+		// 如果单词已经存在，单词出错次数+1
+		long rowId = -1;
+		String selection = DbHelper.COL_MISTAKE_WORD + " = ?";
+		String[] selectionArgs = { word };
+		cursor = db.query(DbHelper.TB_MISTAKE, null, 
+				selection, selectionArgs, null, null, null, "1");
+		cursor.moveToFirst();
+		if (cursor.getCount() > 0) {
+			ContentValues cv = new ContentValues();
+			cv.put(DbHelper.COL_MISTAKE_WORD, cursor.getString(1));
+			cv.put(DbHelper.COL_MISTAKE_TIME, Integer.valueOf(cursor.getString(2)) + 1);
+			rowId = db.update(DbHelper.TB_MISTAKE, cv,
+					DbHelper.COL_MISATAKE_WORD_ID + " = " + cursor.getString(0), null);
+		} else {
+			// 添加新单词
+			ContentValues cv = new ContentValues();
+			cv.put(DbHelper.COL_MISTAKE_WORD, word);
+			cv.put(DbHelper.COL_MISTAKE_TIME, 1);
+			rowId = db.insert(DbHelper.TB_MISTAKE, null, cv);
+		}
+		return rowId;
 	}
 	
 	public void close() {

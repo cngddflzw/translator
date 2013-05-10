@@ -24,7 +24,7 @@ public final class R {
         public static final int translator=0x7f020000;
     }
     public static final class id {
-        public static final int action_settings=0x7f080021;
+        public static final int action_settings=0x7f080029;
         public static final int deleteWordCancel=0x7f080002;
         public static final int deleteWordConfirm=0x7f080001;
         public static final int deleteWordTips=0x7f080000;
@@ -44,12 +44,15 @@ public final class R {
         public static final int loginUsernameLabel=0x7f08000b;
         public static final int mainTabhost=0x7f080012;
         public static final int newWordList=0x7f080013;
-        public static final int optionCurrentUser=0x7f080022;
-        public static final int optionExit=0x7f080025;
-        public static final int optionLogin=0x7f080026;
-        public static final int optionLogout=0x7f080024;
-        public static final int optionReg=0x7f080027;
-        public static final int optionUpW=0x7f080023;
+        public static final int nextWord=0x7f080028;
+        public static final int optionCurrentUser=0x7f08002b;
+        public static final int optionExit=0x7f08002e;
+        public static final int optionLogin=0x7f08002f;
+        public static final int optionLogout=0x7f08002d;
+        public static final int optionReg=0x7f080030;
+        public static final int optionUpW=0x7f08002c;
+        public static final int originWord=0x7f080025;
+        public static final int originWordLabel=0x7f080024;
         public static final int regCancel=0x7f080020;
         public static final int regEnter=0x7f08001f;
         public static final int regPwd=0x7f08001b;
@@ -63,7 +66,13 @@ public final class R {
         public static final int regUsernameLabel=0x7f080017;
         public static final int regUsernameValid=0x7f080019;
         public static final int regingTip=0x7f080014;
+        public static final int testResultCol1=0x7f080021;
+        public static final int testResultCol2=0x7f080022;
+        public static final int testResultCol3=0x7f080023;
         public static final int title=0x7f080003;
+        public static final int translateText=0x7f080027;
+        public static final int translateTextLable=0x7f080026;
+        public static final int wordTest=0x7f08002a;
     }
     public static final class layout {
         public static final int activity_add_new_word=0x7f030000;
@@ -78,6 +87,8 @@ public final class R {
         public static final int activity_query=0x7f030009;
         public static final int activity_reging=0x7f03000a;
         public static final int activity_register=0x7f03000b;
+        public static final int activity_test_result=0x7f03000c;
+        public static final int activity_word_test=0x7f03000d;
     }
     public static final class menu {
         public static final int add_new_word=0x7f070000;
@@ -89,7 +100,9 @@ public final class R {
         public static final int main=0x7f070006;
         public static final int new_word=0x7f070007;
         public static final int query=0x7f070008;
-        public static final int unlog_menu=0x7f070009;
+        public static final int test_result=0x7f070009;
+        public static final int unlog_menu=0x7f07000a;
+        public static final int word_test=0x7f07000b;
     }
     public static final class string {
         public static final int action_settings=0x7f050001;
@@ -136,6 +149,8 @@ public final class R {
         public static final int title_activity_query=0x7f050029;
         public static final int title_activity_reging=0x7f05002c;
         public static final int title_activity_register=0x7f050028;
+        public static final int title_activity_test_result=0x7f05002f;
+        public static final int title_activity_word_test=0x7f05002e;
         public static final int unameDupCheck=0x7f05000d;
         public static final int username=0x7f05000e;
     }

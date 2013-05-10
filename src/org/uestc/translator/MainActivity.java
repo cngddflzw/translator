@@ -136,6 +136,13 @@ public class MainActivity extends ActivityGroup {
 		Intent intent;
 		AppContext ac = (AppContext) getApplicationContext();
 		switch (item.getItemId()) {
+			// 单词小测试
+			case R.id.wordTest:
+				// 进入测试界面
+				intent = new Intent();
+				intent.setClass(this, WordTestActivity.class);
+				startActivity(intent);
+				break;
 			// 上传单词
 			case R.id.optionUpW:
 				ExecutorService exec = Executors.newCachedThreadPool(); 
